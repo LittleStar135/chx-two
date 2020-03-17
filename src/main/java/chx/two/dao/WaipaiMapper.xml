@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="chx.two.dao.WaipaiMapper">
+  
+  	<resultMap type="Waipai" id="wpmap">
+  		<id property="id" column="id"/>
+  		<result property="bsdate" column="bsdate"/>
+  		<result property="bh" column="bh"/>
+  		<result property="zhizaobh" column="zhizaobh"/>
+  		<result property="zhizao" column="zhizao"/>
+  		<result property="peijian" column="peijian"/>
+  		<result property="peijianbh" column="peijianbh"/>
+  		<result property="danjia" column="danjia"/>
+  		<result property="num" column="num"/>
+  		<result property="price" column="price"/>
+  		<result property="jishu" column="jishu"/>
+  		<result property="sbbh" column="sbbh"/>
+  		<result property="sb" column="sb"/>
+  		<result property="peisong" column="peisong"/>
+  		<result property="songhui" column="songhui"/>
+  		<result property="dj" column="dj"/>
+  		<result property="money" column="money"/>
+  		<result property="jg" column="jg"/>
+  		
+  	
+  	</resultMap>
+  
+  	<select id="selectes" resultMap="wpmap">
+  			SELECT * from waipai 
+  			
+  			<where>
+  				<if test="bh!=null">
+  					and bh =#{bh}
+  				</if>
+  				<if test="zz!=null">
+  					and zhizao like concat('%',#{zz},'%')
+  				</if>
+  				<if test="bs1!=null">
+  					and peisong >=#{bs1}
+  				</if>
+  				<if test="bs2!=null">
+  					and songhui =#{bs2}
+  				</if>
+  			
+  			</where>
+  	</select>
+
+	<insert id="insert">
+		insert into waipai values(null,#{bsdate},#{bh},#{zhizaobh},#{zhizao},#{peijian},#{peijianbh},
+		#{danjia},#{num},#{price},#{sbbh},#{sb},#{jishu},#{dj},#{money},#{peisong},#{jg},#{songhui})
+	</insert>
+  	
+  
+  </mapper>
